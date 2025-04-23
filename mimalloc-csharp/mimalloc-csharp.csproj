@@ -9,7 +9,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
         <PackageId>mimalloc-csharp</PackageId>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Authors>Molth Nevin</Authors>
         <Company>Hell</Company>
         <Description>This project is a wrapper for [mimalloc](https://github.com/microsoft/mimalloc).</Description>
@@ -54,13 +54,6 @@
             <Pack>true</Pack>
             <PackagePath>runtimes\android-x86\native\libmimalloc.so</PackagePath>
             <Link>libmimalloc.so</Link>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-
-        <Content Include="runtimes\ios-arm64\native\libmimalloc.a">
-            <Pack>true</Pack>
-            <PackagePath>runtimes\ios-arm64\native\libmimalloc.a</PackagePath>
-            <Link>libmimalloc.a</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
 
