@@ -1,0 +1,1 @@
+This project is a wrapper for [mimalloc](https://github.com/microsoft/mimalloc).

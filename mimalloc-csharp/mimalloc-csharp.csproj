@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;netstandard2.1</TargetFrameworks>
+        <RootNamespace>mimalloc</RootNamespace>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+
+        <PackageId>mimalloc-csharp</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Molth Nevin</Authors>
+        <Company>Hell</Company>
+        <Description>This project is a wrapper for [mimalloc](https://github.com/microsoft/mimalloc).</Description>
+        <PackageProjectUrl>https://github.com/Molth/mimalloc-csharp</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageTags>malloc;native;performance</PackageTags>
+
+        <PackageOutputPath>./nupkgs</PackageOutputPath>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <SolutionRoot>$(MSBuildThisFileDirectory)../</SolutionRoot>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(SolutionRoot)README.md">
+            <Pack>true</Pack>
+            <PackagePath>\</PackagePath>
+            <Link>README.md</Link>
+        </None>
+
+        <None Include="$(SolutionRoot)LICENSE">
+            <Pack>true</Pack>
+            <PackagePath>\</PackagePath>
+            <Link>LICENSE</Link>
+        </None>
+
+        <None Update="runtimes\android-arm\native\libmimalloc.so">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <Target Name="CleanPackageOutputPath" BeforeTargets="GenerateNuspec">
+        <RemoveDir Directories="$(PackageOutputPath)" />
+        <MakeDir Directories="$(PackageOutputPath)" />
+    </Target>
+
+</Project>
