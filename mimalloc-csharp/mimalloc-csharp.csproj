@@ -6,7 +6,7 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
-        <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
         <PackageId>mimalloc-csharp</PackageId>
         <Version>1.0.0</Version>
@@ -24,6 +24,75 @@
         <SolutionRoot>$(MSBuildThisFileDirectory)../</SolutionRoot>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+        <LangVersion>9.0</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Update="runtimes\android-arm\native\libmimalloc.so">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\android-arm\native\libmimalloc.so</PackagePath>
+            <Link>libmimalloc.so</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Update="runtimes\android-arm64\native\libmimalloc.so">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\android-arm64\native\libmimalloc.so</PackagePath>
+            <Link>libmimalloc.so</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Update="runtimes\android-x64\native\libmimalloc.so">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\android-x64\native\libmimalloc.so</PackagePath>
+            <Link>libmimalloc.so</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Update="runtimes\android-x86\native\libmimalloc.so">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\android-x86\native\libmimalloc.so</PackagePath>
+            <Link>libmimalloc.so</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Update="runtimes\ios-arm64\native\libmimalloc.a">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\ios-arm64\native\libmimalloc.a</PackagePath>
+            <Link>libmimalloc.a</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Update="runtimes\linux-arm64\native\libmimalloc.so">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\linux-arm64\native\libmimalloc.so</PackagePath>
+            <Link>libmimalloc.so</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Update="runtimes\linux-x64\native\libmimalloc.so">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\linux-x64\native\libmimalloc.so</PackagePath>
+            <Link>libmimalloc.so</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Update="runtimes\osx-x64\native\libmimalloc.dylib">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\osx-x64\native\libmimalloc.dylib</PackagePath>
+            <Link>libmimalloc.dylib</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Update="runtimes\win-x64\native\mimalloc.dll">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\win-x64\native\mimalloc.dll</PackagePath>
+            <Link>mimalloc.dll</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
     <ItemGroup>
         <None Include="$(SolutionRoot)README.md">
             <Pack>true</Pack>
@@ -35,10 +104,6 @@
             <Pack>true</Pack>
             <PackagePath>\</PackagePath>
             <Link>LICENSE</Link>
-        </None>
-
-        <None Update="runtimes\android-arm\native\libmimalloc.so">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 
