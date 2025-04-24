@@ -16,6 +16,9 @@ namespace mimalloc
     {
         private const string NATIVE_LIBRARY = "mimalloc";
 
+        [DllImport(NATIVE_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int mi_version();
+
         // \defgroup malloc Basic Allocation
         // The basic allocation interface.
 
