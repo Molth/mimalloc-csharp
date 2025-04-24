@@ -72,11 +72,11 @@ namespace mimalloc
     /// other subprocesses.
     public unsafe struct mi_subproc_id_t
     {
-        public void* ptr;
+        public void* value;
 
-        private mi_subproc_id_t(void* ptr) => this.ptr = ptr;
-        public static implicit operator mi_subproc_id_t(void* ptr) => new mi_subproc_id_t(ptr);
-        public static implicit operator void*(mi_subproc_id_t ptr) => ptr.ptr;
+        private mi_subproc_id_t(void* value) => this.value = value;
+        public static implicit operator mi_subproc_id_t(void* value) => new mi_subproc_id_t(value);
+        public static implicit operator void*(mi_subproc_id_t value) => value.value;
     }
 
     /// Pointer of type of first-class heaps.
