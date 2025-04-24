@@ -9,7 +9,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
         <PackageId>mimalloc-csharp</PackageId>
-        <Version>1.0.3</Version>
+        <Version>1.0.4</Version>
         <Authors>Molth Nevin</Authors>
         <Company>Hell</Company>
         <Description>This project is a wrapper for [mimalloc](https://github.com/microsoft/mimalloc).</Description>
@@ -74,6 +74,13 @@
         <Content Include="runtimes\osx-x64\native\libmimalloc.dylib">
             <Pack>true</Pack>
             <PackagePath>runtimes\osx-x64\native\libmimalloc.dylib</PackagePath>
+            <Link>libmimalloc.dylib</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+
+        <Content Include="runtimes\osx-arm64\native\libmimalloc.dylib">
+            <Pack>true</Pack>
+            <PackagePath>runtimes\osx-arm64\native\libmimalloc.dylib</PackagePath>
             <Link>libmimalloc.dylib</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
