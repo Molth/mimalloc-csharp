@@ -9,7 +9,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
         <PackageId>mimalloc-csharp</PackageId>
-        <Version>1.0.4</Version>
+        <Version>1.0.5</Version>
         <Authors>Molth Nevin</Authors>
         <Company>Hell</Company>
         <Description>This project is a wrapper for [mimalloc](https://github.com/microsoft/mimalloc).</Description>
