@@ -12,7 +12,7 @@ using System.Security;
 namespace mimalloc
 {
     [SuppressUnmanagedCodeSecurity]
-    public static unsafe class Mimalloc
+    public static unsafe class MiMalloc
     {
         private const string NATIVE_LIBRARY = "mimalloc";
 
