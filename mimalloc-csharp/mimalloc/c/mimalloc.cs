@@ -11,6 +11,9 @@ using System.Security;
 
 namespace mimalloc
 {
+    /// <summary>
+    ///     https://github.com/microsoft/mimalloc
+    /// </summary>
     [SuppressUnmanagedCodeSecurity]
     public static unsafe class MiMalloc
     {
