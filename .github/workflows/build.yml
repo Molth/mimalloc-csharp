@@ -101,6 +101,18 @@ jobs:
 
   build-android:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - abi: armeabi-v7a
+            target_dir: android-arm
+          - abi: arm64-v8a
+            target_dir: android-arm64
+          - abi: x86
+            target_dir: android-x86
+          - abi: x86_64
+            target_dir: android-x64
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -118,43 +130,21 @@ jobs:
       - env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         run: |
-          ABI_MAP="armeabi-v7a:android-arm arm64-v8a:android-arm64 x86:android-x86 x86_64:android-x64"
-
-          for PAIR in $ABI_MAP; do
-            ABI=$(echo $PAIR | cut -d: -f1)
-            TARGET_DIR=$(echo $PAIR | cut -d: -f2)
-
-            mkdir -p build/$ABI
-            cmake -S . -B build/$ABI \
-                  -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                  -DANDROID_ABI=$ABI \
-                  -DANDROID_NATIVE_API_LEVEL=21 \
-                  -DMI_ANDROID=ON \
-                  -DCMAKE_BUILD_TYPE=Release
-            cmake --build build/$ABI
-            mkdir -p $TARGET_DIR
-            cp build/$ABI/libmimalloc.so $TARGET_DIR/
-          done
+          mkdir -p build/${{ matrix.abi }}
+          cmake -S . -B build/${{ matrix.abi }} \
+                -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+                -DANDROID_ABI=${{ matrix.abi }} \
+                -DANDROID_NATIVE_API_LEVEL=21 \
+                -DMI_ANDROID=ON \
+                -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/${{ matrix.abi }}
+          mkdir -p ${{ matrix.target_dir }}
+          cp build/${{ matrix.abi }}/libmimalloc.so ${{ matrix.target_dir }}/
 
       - uses: actions/upload-artifact@v4
         with:
-          name: mimalloc-android-arm
-          path: android-arm/
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: mimalloc-android-arm64
-          path: android-arm64/
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: mimalloc-android-x86
-          path: android-x86/
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: mimalloc-android-x64
-          path: android-x64/
+          name: mimalloc-${{ matrix.target_dir }}
+          path: ${{ matrix.target_dir }}/
 
   build-ios-arm64:
     runs-on: macos-latest
