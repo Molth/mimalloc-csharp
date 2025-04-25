@@ -705,7 +705,8 @@ namespace mimalloc
 
         [DllImport(NATIVE_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
         public static extern void* mi_rezalloc(void* p, nuint newsize);
-        //  [DllImport(NATIVE_LIBRARY,  CallingConvention = CallingConvention.Cdecl)]public static extern void* mi_recalloc(void* p, size_t newcount, size_t size);
+
+        // public static extern void* mi_recalloc(void* p, nuint newcount, nuint size);
 
         [DllImport(NATIVE_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
         public static extern void* mi_rezalloc_aligned(void* p, nuint newsize, nuint alignment);
@@ -890,7 +891,8 @@ namespace mimalloc
         [DllImport(NATIVE_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
         public static extern void* mi__expand(void* p, nuint newsize);
 
-        // public static extern   void*  mi_recalloc(void* p, size_t count, size_t size);
+        // public static extern void* mi_recalloc(void* p, nuint newcount, nuint size);
+
         [DllImport(NATIVE_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
         public static extern nuint mi_malloc_size(void* p);
 

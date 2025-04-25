@@ -31,13 +31,13 @@ namespace mimalloc
     /// @see mi_register_output()
     public unsafe struct mi_output_fun
     {
-        public delegate* managed<char*, void*, void> fun;
+        public delegate* managed<byte*, void*, void> fun;
 
-        public void invoke(char* msg, void* arg) => fun(msg, arg);
+        public void invoke(byte* msg, void* arg) => fun(msg, arg);
 
-        private mi_output_fun(delegate* managed<char*, void*, void> func) => this.fun = func;
-        public static implicit operator mi_output_fun(delegate* managed<char*, void*, void> func) => new mi_output_fun(func);
-        public static implicit operator delegate* managed<char*, void*, void>(mi_output_fun func) => func.fun;
+        private mi_output_fun(delegate* managed<byte*, void*, void> func) => this.fun = func;
+        public static implicit operator mi_output_fun(delegate* managed<byte*, void*, void> func) => new mi_output_fun(func);
+        public static implicit operator delegate* managed<byte*, void*, void>(mi_output_fun func) => func.fun;
     }
 
     /// Type of error callback functions.
