@@ -114,6 +114,8 @@ namespace mimalloc
     {
         public delegate* managed<mi_heap_t_ptr, mi_heap_area_t_ptr, void*, nuint, void*, bool> fun;
 
+        public bool invoke(mi_heap_t_ptr heap, mi_heap_area_t_ptr area, void* block, nuint block_size, void* arg) => fun(heap, area, block, block_size, arg);
+
         private mi_block_visit_fun(delegate* managed<mi_heap_t_ptr, mi_heap_area_t_ptr, void*, nuint, void*, bool> func) => this.fun = func;
         public static implicit operator mi_block_visit_fun(delegate* managed<mi_heap_t_ptr, mi_heap_area_t_ptr, void*, nuint, void*, bool> func) => new mi_block_visit_fun(func);
         public static implicit operator delegate* managed<mi_heap_t_ptr, mi_heap_area_t_ptr, void*, nuint, void*, bool>(mi_block_visit_fun func) => func.fun;
