@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Security;
 
 #pragma warning disable CS1570
@@ -747,36 +748,47 @@ namespace mimalloc
         // @returns A pointer to an object of type \a tp, or
         // \a NULL if out of memory.
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_malloc_tp<T>() where T : unmanaged => ((T*)mi_malloc((nuint)sizeof(T)));
 
         /// Allocate a zero-initialized block of type \a tp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_zalloc_tp<T>() where T : unmanaged => ((T*)mi_zalloc((nuint)sizeof(T)));
 
         /// Allocate \a count zero-initialized blocks of type \a tp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_calloc_tp<T>(nuint count) where T : unmanaged => ((T*)mi_calloc(count, (nuint)sizeof(T)));
 
         /// Allocate \a count blocks of type \a tp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_mallocn_tp<T>(nuint count) where T : unmanaged => ((T*)mi_mallocn(count, (nuint)sizeof(T)));
 
         /// Re-allocate to \a count blocks of type \a tp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_reallocn_tp<T>(void* p, nuint count) where T : unmanaged => ((T*)mi_reallocn(p, count, (nuint)sizeof(T)));
 
         /// Allocate a block of type \a tp in a heap \a hp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_heap_malloc_tp<T>(mi_heap_t_ptr hp) where T : unmanaged => ((T*)mi_heap_malloc(hp, (nuint)sizeof(T)));
 
         /// Allocate a zero-initialized block of type \a tp in a heap \a hp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_heap_zalloc_tp<T>(mi_heap_t_ptr hp) where T : unmanaged => ((T*)mi_heap_zalloc(hp, (nuint)sizeof(T)));
 
         /// Allocate \a count zero-initialized blocks of type \a tp in a heap \a hp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_heap_calloc_tp<T>(mi_heap_t_ptr hp, nuint count) where T : unmanaged => ((T*)mi_heap_calloc(hp, count, (nuint)sizeof(T)));
 
         /// Allocate \a count blocks of type \a tp in a heap \a hp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_heap_mallocn_tp<T>(mi_heap_t_ptr hp, nuint count) where T : unmanaged => ((T*)mi_heap_mallocn(hp, count, (nuint)sizeof(T)));
 
         /// Re-allocate to \a count blocks of type \a tp in a heap \a hp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_heap_reallocn_tp<T>(mi_heap_t_ptr hp, void* p, nuint count) where T : unmanaged => ((T*)mi_heap_reallocn(hp, p, count, (nuint)sizeof(T)));
 
         /// Re-allocate to \a count zero initialized blocks of type \a tp in a heap \a hp.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T* mi_heap_recalloc_tp<T>(mi_heap_t_ptr hp, void* p, nuint count) where T : unmanaged => ((T*)mi_heap_recalloc(hp, p, count, (nuint)sizeof(T)));
 
         // \defgroup analysis Heap Introspection
